@@ -1,5 +1,11 @@
 //Collect User Money
 const prompt = require("prompt-sync")();
+const {SYMBOLS_COUNT,SYMBOL_VALUES,ROWS,COLS} = require("./globalVariables")
+
+
+
+
+
 
 const deposit = () => {
     const depositAmount = prompt("Enter a deposit amount: ")
@@ -29,7 +35,7 @@ const getNumberOfLines = () =>{
 const getBet = (balance,lines) =>{
     const bet = prompt("Enter bet amount: ")
     const numberBet = parseFloat(bet);
-    if (isNaN(numberBet) || numberBet < 1 || numberBet > balance){
+    if (isNaN(numberBet) || numberBet < 1 || numberBet > (balance/ lines)){
         console.log("Invalid bet. Try Again")
         return getNumberOfLines()
     }
@@ -38,6 +44,14 @@ const getBet = (balance,lines) =>{
     }
 }
 
-let balance = deposit();
-const numberOfLines = getNumberOfLines();
-const bet = getBet(balance,numberOfLines)
+const spin = () =>{
+    const symbols = []
+    for (const [symbol,count] in Object.entries(SYMBOLS_COUNT)){
+        console.log(symbol,count)
+    }
+}
+
+spin()
+// let balance = deposit();
+// const numberOfLines = getNumberOfLines();
+// const bet = getBet(balance,numberOfLines)
